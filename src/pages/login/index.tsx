@@ -3,14 +3,19 @@ import { Link, useHistory } from 'umi';
 import { Form, Input, Button } from 'antd';
 import styles from './styles.less';
 
-const PrivateLayout: React.FC = (props) => {
+const Index: React.FC = (props) => {
   const history = useHistory();
   return (
     <div className={styles.wrapper}>
       <div className={styles['logo-container']}>
         <img src="/logo.png" alt="imageLogin" className={styles.logo} />
       </div>
-      <Form hideRequiredMark initialValues={{}} layout="vertical">
+      <Form
+        hideRequiredMark
+        initialValues={{}}
+        layout="vertical"
+        onFinish={() => history.push('/roles')}
+      >
         <Form.Item
           label="Username"
           name="username"
@@ -37,4 +42,4 @@ const PrivateLayout: React.FC = (props) => {
   );
 };
 
-export default PrivateLayout;
+export default Index;
