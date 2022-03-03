@@ -11,6 +11,10 @@ export default [
         path: '/login',
         component: './login',
       },
+      {
+        path: '/roles',
+        component: './roles',
+      },
     ],
   },
 ];

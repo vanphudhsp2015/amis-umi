@@ -1,0 +1,45 @@
+@import '/src/assets/styles/mixins.less';
+
+.sider {
+  background-color: transparent;
+  :global(.ant-layout-sider-children) {
+    position: fixed;
+    width: 256px;
+    height: 100%;
+    min-height: 100vh;
+    background-color: @background-white;
+    border-right: 1px solid #f6f6f6;
+    transition: width 0.3s;
+  }
+  &:global(.ant-layout-sider-collapsed) {
+    :global(.ant-layout-sider-children) {
+      width: 80px;
+    }
+    :global(.ant-menu-item) {
+      padding-left: 10px;
+    }
+  }
+}
+
+.logo-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 64px;
+  background-color: @background-white;
+  .logo {
+    width: 100px;
+    transition: 0.3s ease-in-out;
+    &-collapsed {
+      width: 60px;
+    }
+  }
+}
+
+.layout {
+  min-height: 100vh;
+  background-color: #f6f6f6;
+  :global(.ant-layout-content) {
+    padding: 24px;
+  }
+}
