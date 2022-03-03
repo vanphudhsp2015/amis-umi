@@ -7,6 +7,10 @@ export default [
         path: '/',
         component: './',
       },
+      {
+        path: '/login',
+        component: './login',
+      },
     ],
   },
 ];

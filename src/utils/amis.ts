@@ -1,4 +1,4 @@
-import { Request, History } from 'umi';
+import { history } from 'umi';
 import { notification } from 'antd';
 import { render as renderAmis } from 'amis';
 import copy from 'copy-to-clipboard';
