@@ -19,6 +19,10 @@
       padding-left: 10px;
     }
   }
+  :global(.ant-layout-sider-trigger) {
+    color: @text-dark;
+    background-color: #f6f6f6;
+  }
 }
 
 .logo-container {
@@ -41,5 +45,42 @@
   background-color: #f6f6f6;
   :global(.ant-layout-content) {
     padding: 24px;
+  }
+}
+.header {
+  display: flex;
+  justify-content: end;
+  background-color: @background-white;
+  box-shadow: 0 0 10px -2px rgba(0, 0, 0, 0.3);
+  padding: 24px;
+  .dropdown {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+  }
+  .content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: right;
+    .title {
+      width: 100%;
+      margin-bottom: 0;
+      color: @text-dark;
+      font-weight: 400;
+      font-size: 14px;
+      line-height: 22px;
+    }
+    .norm {
+      margin-bottom: 0;
+      color: @text-dark;
+      font-weight: 400;
+      font-size: 12px;
+      line-height: 18px;
+      opacity: 0.65;
+    }
+  }
+  :global(.ant-avatar){
+    margin-left: 10px;
   }
 }

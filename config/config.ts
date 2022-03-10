@@ -29,15 +29,15 @@ export default defineConfig({
     },
     {
       name: 'og:title',
-      content: 'Arkki',
+      content: 'Amis',
     },
     {
       name: 'og:description',
-      content: 'Arkki',
+      content: 'Amis',
     },
     {
       name: 'description',
-      content: 'Arkki',
+      content: 'Amis',
     },
   ],
   hash: true,
@@ -63,7 +63,7 @@ export default defineConfig({
   theme: {
     'primary-color': defaultSettings.primaryColor,
   },
-  title: 'Arkki',
+  title: 'Amis',
   ignoreMomentLocale: true,
   publicPath: '/',
   manifest: {

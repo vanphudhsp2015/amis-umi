@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useMemo } from 'react';
-import { Layout, Menu } from 'antd';
+import { Layout, Menu, Dropdown, Avatar } from 'antd';
 import { Link, useHistory, useLocation } from 'umi';
 import { isArray } from 'lodash';
 import { useSelector, useDispatch } from 'dva';
@@ -16,13 +16,26 @@ const PrivateLayout: React.FC = (props) => {
 
   const dispatch = useDispatch();
 
-  const [{ isMobileView, isMenuCollapsed }] = useSelector(({ settings }: any) => [settings]);
+  const [{ isMobileView, isMenuCollapsed }, user] = useSelector(({ settings, user }: any) => [
+    settings,
+    user,
+  ]);
 
   const [menuData, setMenuData] = useState([
     {
       title: 'Roles',
       key: 'roles',
       url: ['/roles'],
+    },
+    {
+      title: 'Initialization',
+      key: 'initialization',
+      url: ['/initialization'],
+    },
+    {
+      title: 'Form Page',
+      key: 'form-page',
+      url: ['/form-page'],
     },
     {
       title: 'Accounts',
@@ -173,6 +186,28 @@ const PrivateLayout: React.FC = (props) => {
         onCollapse: onCollapse,
       };
 
+  const menu = (
+    <Menu selectable={false} className={styles.dropdownUser}>
+      <Menu.Item>
+        <strong>Hello, {user?.userName || 'Anonymous'}</strong>
+      </Menu.Item>
+      <Menu.Divider />
+      <Menu.Item>
+        <div>
+          <strong className="mr-1">Email:</strong>
+          {user?.user?.email}
+        </div>
+      </Menu.Item>
+      <Menu.Divider />
+      <Menu.Item>
+        <span className="d-flex align-items-center">
+          <i className={`${styles.menuIcon} icon-exit`} />
+          Logout
+        </span>
+      </Menu.Item>
+    </Menu>
+  );
+
   return (
     <Layout className={styles.wrapper}>
       <Sider {...menuSettings} className={styles.sider}>
@@ -212,7 +247,17 @@ const PrivateLayout: React.FC = (props) => {
         </Scrollbars>
       </Sider>
       <Layout className={styles.layout}>
-        <Layout.Header>header</Layout.Header>
+        <Layout.Header className={styles.header}>
+          <Dropdown overlay={menu} trigger={['click']}>
+            <div className={styles.dropdown}>
+              <div className={styles.content}>
+                <h3 className={styles.title}>{user?.user?.userName || 'Admin'}</h3>
+                <p className={styles.norm}>{user?.user?.name || 'Admin'}</p>
+              </div>
+              <Avatar shape="square" size={32} />
+            </div>
+          </Dropdown>
+        </Layout.Header>
         <Layout.Content>{props.children}</Layout.Content>
       </Layout>
     </Layout>

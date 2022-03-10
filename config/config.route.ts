@@ -5,7 +5,7 @@ export default [
     routes: [
       {
         path: '/',
-        component: './',
+        redirect: '/roles',
       },
       {
         path: '/login',
@@ -14,6 +14,14 @@ export default [
       {
         path: '/roles',
         component: './roles',
+      },
+      {
+        path: '/initialization',
+        component: './initialization',
+      },
+      {
+        path: '/form-page',
+        component: './form-page',
       },
     ],
   },
