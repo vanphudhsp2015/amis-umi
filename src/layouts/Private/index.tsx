@@ -27,21 +27,6 @@ const PrivateLayout: React.FC = (props) => {
       key: 'roles',
       url: ['/roles'],
     },
-    {
-      title: 'Initialization',
-      key: 'initialization',
-      url: ['/initialization'],
-    },
-    {
-      title: 'Form Page',
-      key: 'form-page',
-      url: ['/form-page'],
-    },
-    {
-      title: 'Accounts',
-      key: 'accounts',
-      url: ['/accounts'],
-    },
   ]);
 
   const [selectedKeys, updateSelectedKeys] = useState<any[] | []>([]);
@@ -186,20 +171,27 @@ const PrivateLayout: React.FC = (props) => {
         onCollapse: onCollapse,
       };
 
+  const logout = () => {
+    dispatch({
+      type: 'user/LOGOUT',
+      payload: {},
+    });
+  };
+
   const menu = (
     <Menu selectable={false} className={styles.dropdownUser}>
-      <Menu.Item>
+      <Menu.Item key={1}>
         <strong>Hello, {user?.userName || 'Anonymous'}</strong>
       </Menu.Item>
       <Menu.Divider />
-      <Menu.Item>
+      <Menu.Item key={2}>
         <div>
           <strong className="mr-1">Email:</strong>
           {user?.user?.email}
         </div>
       </Menu.Item>
       <Menu.Divider />
-      <Menu.Item>
+      <Menu.Item onClick={logout} key={3}>
         <span className="d-flex align-items-center">
           <i className={`${styles.menuIcon} icon-exit`} />
           Logout
