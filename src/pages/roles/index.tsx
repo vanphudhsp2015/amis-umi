@@ -1,10 +1,31 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useHistory } from 'umi';
+import { useDispatch } from 'dva';
 import styles from './styles.less';
 import { renderReactAmis } from '@/utils/amis';
+import { isEmpty } from 'lodash';
 
 const Index: React.FC = (props) => {
+  const [json, setJson] = useState({});
   const history = useHistory();
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch({
+      type: 'roles/GET_JSON',
+      payload: {},
+      callback: (response: any) => {
+        if (response) {
+          setJson(response.data.json);
+        }
+      },
+    });
+  }, []);
+
+  if (isEmpty(json)) {
+    return null;
+  }
+
   return (
     <div className={styles.wrapper}>
       {renderReactAmis({
@@ -13,7 +34,7 @@ const Index: React.FC = (props) => {
           type: 'crud',
           headerToolbar: [],
           syncLocation: false,
-          api: 'https://3xsw4ap8wah59.cfc-execute.bj.baidubce.com/api/amis-mock/sample',
+          api: '/api/roles',
           filter: {
             title: 'Filter',
             controls: [
@@ -37,28 +58,16 @@ const Index: React.FC = (props) => {
           },
           columns: [
             {
-              name: 'id',
-              label: 'ID',
+              name: 'code',
+              label: 'CODE',
             },
             {
-              name: 'engine',
-              label: 'Rendering engine',
+              name: 'name',
+              label: 'Name',
             },
             {
-              name: 'browser',
-              label: 'Browser',
-            },
-            {
-              name: 'platform',
-              label: 'Platform(s)',
-            },
-            {
-              name: 'version',
-              label: 'Engine version',
-            },
-            {
-              name: 'grade',
-              label: 'CSS grade',
+              name: 'description',
+              label: 'Description',
             },
             {
               type: 'operation',
@@ -70,7 +79,7 @@ const Index: React.FC = (props) => {
                   actionType: 'ajax',
                   level: 'danger',
                   confirmText: 'Confirm',
-                  api: 'delete:https://3xsw4ap8wah59.cfc-execute.bj.baidubce.com/api/amis-mock/sample/${id}',
+                  api: 'DELETE:/api/roles/${id}',
                 },
               ],
             },
